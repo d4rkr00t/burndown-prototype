@@ -1,0 +1,25 @@
+/**
+ * Common
+ */
+$main: #3F51B5;
+$mainAccent: #ffeb3b;
+$mainAccent25: rgba(255, 193, 5, .25);
+$mainAccent60: rgba(255, 193, 5, .6);
+
+$secondary: #673ab7;
+$secondaryAccent: #8e24aa;
+
+$white: #fff;
+$white07: rgba(255, 255, 255, .07);
+$white25: rgba(255, 255, 255, .25);
+$white40: rgba(255, 255, 255, .4);
+$white50: rgba(255, 255, 255, .5);
+
+$widgetTitle: #616161;
+$muttedText: #9e9e9e;
+$mGreen: #4caf50;
+
+/**
+ * Header
+ */
+$header-gradient-end: #593AB7;

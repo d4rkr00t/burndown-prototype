@@ -1,0 +1,32 @@
+@import '../../colors.css';
+
+.header {
+    padding: 2rem 0;
+
+    background: linear-gradient(to bottom, $main, $header-gradient-end);
+}
+
+.header__text {
+    font-size: 3rem;
+    font-weight: 100;
+
+    position: relative;
+
+    padding-bottom: 2rem;
+
+    text-align: center;
+    letter-spacing: .1rem;
+
+    color: $white;
+}
+
+.header__number {
+    font-size: 2rem;
+
+    position: absolute;
+    top: -6px;
+
+    margin-left: 1rem;
+
+    color: $mainAccent;
+}

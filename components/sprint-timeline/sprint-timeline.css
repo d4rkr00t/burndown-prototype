@@ -1,0 +1,40 @@
+@import '../../colors.css';
+
+.sprint-timeline {
+    line-height: 2rem;
+
+    display: flex;
+    flex-direction: row;
+
+    height: 2rem;
+
+    background: $secondary;
+}
+
+.sprint-timeline__item {
+    font-size: .8rem;
+    font-weight: 100;
+
+    position: relative;
+    z-index: 2;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    color: $white40;
+    border-right: 1px solid $white25;
+
+    flex-grow: 1;
+}
+
+.sprint-timeline__item-bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background: $secondaryAccent;
+}

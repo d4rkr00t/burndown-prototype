@@ -1,0 +1,23 @@
+@import '../../colors.css';
+
+.distribution__chart {
+    display: block;
+
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.distribution__group-label {
+    font-weight: 200;
+
+    fill: $muttedText;
+    text-anchor: middle;
+}
+
+.distribution__group-sp {
+    font-size: .8rem;
+    font-weight: 100;
+
+    fill: $white50;
+    text-anchor: middle;
+}

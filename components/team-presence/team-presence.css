@@ -1,0 +1,48 @@
+@import '../../colors.css';
+
+.team-presence__days,
+.team-presence__member {
+    display: flex;
+    flex-direction: row;
+
+    border-bottom: 1px solid $white25;
+}
+
+.team-presence__days {
+    margin-bottom: 1rem;
+}
+
+.team-presence__days-offset {
+    width: 3rem;
+
+    flex-shrink: 1;
+}
+
+.team-presence__day {
+    text-align: center;
+
+    color: $muttedText;
+
+    flex-grow: 1;
+}
+
+
+.team-presence__member-avatar {
+    width: 3rem;
+    height: 3rem;
+
+    border-right: 1px solid $white50;
+
+    flex-shrink: 1;
+}
+
+.team-presence__member-day {
+    border-right: 1px solid $white50;
+    background: $mGreen;
+
+    flex-grow: 1;
+}
+
+.team-presence__member-day.-absent {
+    background: $mainAccent;
+}

@@ -1,0 +1,110 @@
+@import '../../colors.css';
+
+.burndown {
+    display: block;
+
+    max-height: 25rem;
+    margin: 0 auto;
+}
+
+
+/**
+ * Axis
+ */
+
+.burndown__x-tick,
+.burndown__y-tick {
+    stroke: $white07;
+}
+
+.burndown__y-axis .domain {
+    fill: none;
+}
+
+.burndown__y-axis text,
+.burndown__x-label {
+    font-size: .8rem;
+    font-weight: 100;
+
+    fill: $white25;
+}
+
+
+/**
+ * Perfect result
+ */
+
+.burndown__perfect-line {
+    stroke: $white25;
+    stroke-width: 2px;
+}
+
+.burndown__perfect-total-point {
+    stroke: $white25;
+    stroke-width: 2px;
+    fill: $header-gradient-end;
+}
+
+.burndown__perfect-total-line {
+    stroke: $white25;
+    stroke-width: 1px;
+}
+
+.burndown__perfect-label {
+    font-size: .8rem;
+    font-weight: 100;
+
+    fill: $white25;
+    text-anchor: middle;
+}
+
+
+
+/**
+ * Actual
+ */
+
+.burndown__actual {
+    opacity: .8;
+
+    stroke: $mainAccent;
+    fill: none;
+    stroke-width: 2px;
+}
+
+.burndown__point {
+    opacity: .8;
+
+    fill: $main;
+    stroke: $mainAccent;
+    stroke-width: 2px;
+}
+
+
+/**
+ * Prediction
+ */
+
+.burndown__prediction {
+    stroke: $mainAccent25;
+    stroke-width: 2px;
+}
+
+.burndown__prediction-total-point {
+    stroke: $mainAccent25;
+    stroke-width: 2px;
+    fill: $header-gradient-end;
+}
+
+.burndown__prediction-total-line {
+    stroke: $mainAccent25;
+    stroke-width: 1px;
+}
+
+.burndown__prediction-label {
+    font-size: .8rem;
+    font-weight: 100;
+
+    fill: $mainAccent60;
+    text-anchor: middle;
+}
