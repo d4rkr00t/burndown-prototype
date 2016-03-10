@@ -1,0 +1,28 @@
+{
+  "name": "burndown-prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "d3": "^3.5.16",
+    "got": "^6.2.0",
+    "hyperscript": "^1.4.7",
+    "lodash": "^4.6.1",
+    "moment": "^2.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d4rkr00t/burndown-prototype.git"
+  },
+  "keywords": [],
+  "author": "Stanislav Sysoev <d4rkr00t@gmail.com> (http://sysoev.org)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d4rkr00t/burndown-prototype/issues"
+  },
+  "homepage": "https://github.com/d4rkr00t/burndown-prototype#readme"
+}
