@@ -1,6 +1,6 @@
-import moment from 'moment';
+const moment = require('moment');
 
-export function sprintDays(startDate, endDate) {
+module.exports = function sprintDays(startDate, endDate) {
     return Array.apply(null, Array(Number(endDate.diff(startDate, 'days')))).reduce((days, _, i) => {
         const day = moment(startDate).add(i + 1, 'd');
 

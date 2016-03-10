@@ -1,14 +1,20 @@
 const sprintNumber = 9;
 
+const sprintDays = require('./utils/date');
 const fs = require('fs');
 const got = require('got');
 const key = require('./key');
 const moment = require('moment');
 const sprint = require('./sprints/' + sprintNumber + '/sprint.json');
 const startDate = moment(sprint.startDate, 'DD.MM.YYYY');
+const endDate = moment(sprint.endDate, 'DD.MM.YYYY');
+const todayDate = moment(new Date());
+const sprintLength = sprintDays(startDate, endDate).length;
+const daysPassed = sprintDays(startDate, todayDate).length;
 const QUEUE = 'SERP';
 const URLS = {
-    issues: 'https://st-api.yandex-team.ru/v2/issues',
+    center: 'https://center.yandex-team.ru/api/v1',
+    issues: 'https://st-api.yandex-team.ru/v2/issues'
 };
 const DISTRIBUTION = {
     backlog: ['open'],
@@ -34,16 +40,6 @@ function getAllTasks(url, queue, filter) {
     return sendRequest(url + '?filter=' + filter + '&filter=queue:' + queue, 'get', {});
 }
 
-function getTaskInfo(url, id) {
-    return sendRequest(url + '/' + id, 'get');
-}
-
-function getTasksFullInfo(tasks) {
-    const promiseList = tasks.map((t) => getTaskInfo(URLS.issues, t.id).then(res => JSON.parse(res.body)));
-
-    return Promise.all(promiseList);
-}
-
 function processTasks(tasks) {
     return tasks
         .filter((t) => Number((t.originalEstimate.match(/(\d+)/) || [])[0]))
@@ -53,8 +49,7 @@ function processTasks(tasks) {
             tags: t.tags,
             sp: Number(t.originalEstimate.match(/(\d+)/)[0]),
             updatedAt: t.updatedAt,
-            status: t.status.key,
-            transitions: t.transitions
+            status: t.status.key
         }));
 }
 
@@ -99,11 +94,12 @@ function prepareData(tasks) {
                 sp: 0
             }
         },
-        spDay: []
+        spDay: Array.apply(null, Array(daysPassed))
     };
 
     const data = tasks.reduce((d, t) => {
         addDistribution(d.distr, t.status, t.sp);
+
         if (DISTRIBUTION.done.indexOf(t.status) !== -1 ) {
             addSpDay(d.spDay, moment(new Date(t.updatedAt)), t.sp);
         }
@@ -118,7 +114,11 @@ function prepareData(tasks) {
             prevDay = newSpDay[index - 1];
         }
 
-        newSpDay[index] = d + prevDay;
+        if (d >= 0) {
+            newSpDay[index] = d + prevDay;
+        } else {
+            newSpDay[index] = prevDay;
+        }
 
         return newSpDay;
     }, []);
@@ -126,7 +126,7 @@ function prepareData(tasks) {
     data.presence = {
         sysoev: [1, 1, 1, 1, 1, 1, 1, 1],
         xxxxxx: [1, 1, 1, 1, 1, 1, 1, 1],
-        boronchiev: [1, 1, 1, 1, 1, 1, 1, 1],
+        boronchiev: [1, 1, 1, 0, 0, 0, 0, 0],
         vtroshina: [0, 0, 0, 0, 0, 0, 0, 0]
     };
 
@@ -135,11 +135,14 @@ function prepareData(tasks) {
 
 function saveData(data) {
     fs.writeFileSync('./sprints/' + sprintNumber + '/data.json', JSON.stringify(data));
+
+    return data;
 }
 
 getAllTasks(URLS.issues, QUEUE, sprint.filter)
-    .then((res) => getTasksFullInfo(JSON.parse(res.body)))
+    .then((res) => JSON.parse(res.body))
     .then(processTasks)
     .then(prepareData)
     .then(saveData)
+    .then(data => console.log(data))
     .catch(err => console.error(err));

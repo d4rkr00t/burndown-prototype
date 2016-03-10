@@ -27,7 +27,7 @@ function main({ number, sprint, data }) {
     document.body.appendChild(
         h(
             'div.page',
-            header(store),
+            header(store, sprintNumber),
             sprintTimeline(store),
             h('.wrapper', distribution(store)),
             h('.wrapper', teamPresence(store))

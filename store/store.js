@@ -1,7 +1,7 @@
 import moment from 'moment';
 import last from 'lodash/last';
 
-import { sprintDays } from '../utils/date';
+import sprintDays from '../utils/date';
 
 export default function createStore(startDate, endDate, totalSP, spDay, team, teamPresence, distr) {
     startDate = moment(startDate, 'DD.MM.YYYY');
