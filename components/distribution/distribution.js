@@ -27,7 +27,7 @@ export default function distribution({ distr, totalSP }) {
 
     const sizes = Object
         .keys(distr)
-        .map(k => distr[k].sp);
+        .map(k => distr[k].sp || '');
 
     drawGroups(svg, color, scale, groups, sizes);
 
